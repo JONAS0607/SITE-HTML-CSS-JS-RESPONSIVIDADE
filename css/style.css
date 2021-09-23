@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+body {
+  background: hsl(41, 95%, 63%);
+}
+img{
+  width: 100%;
+  height: auto;
+}
+#header {
+  height: 4.5rem;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+}
+
+.container {
+  width: 100%;
+  margin-left:1.5rem;
+  margin-right:1.5rem;
+}
