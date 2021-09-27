@@ -4,7 +4,10 @@
   box-sizing: border-box;
 }
 :root {
-  --hue: 159;
+  --header-height: 4.5rem;
+
+  /**colors*/
+  --hue: 900;
 
   --base-color: hsl(var(--hue) 36% 57%);
   --base-color-second: hsl(var(--hue) 65% 88%);
@@ -20,19 +23,41 @@ a {
 body {
   background: var(--body-color);
   color: var(--text-color);
-  font: 400 1rem 'DM Sans', sans-serif;
+  font: 400 1rem "DM Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 h1 {
-  font: 700 1.875rem 'Poppins', sans-serif;
+  font: 700 1.875rem "Poppins", sans-serif;
   color: var(--title-color);
   -webkit-font-smoothing: antialiased;
+}
+.button {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+  height: 3.5em;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  font: 500 1rem "DM Sans", sans-serif;
+  transition: background 0.3s;
+}
+.button:hover {
+  background-color: var(--base-color-alt);
+}
+.divider-1 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1) 0%,
+    hsla(var(--hue), 65%, 88%, 0.34) 100%
+  );
 }
 #home .image {
   position: relative;
 }
 #home .image::before {
-  content: '';
+  content: "";
   height: 100%;
   width: 100%;
   background: var(--base-color-second);
@@ -43,8 +68,8 @@ h1 {
   z-index: 0;
 }
 #home .image img,
-#home .image::before{
-  border-radius: .25rem;
+#home .image::before {
+  border-radius: 0.25rem;
 }
 
 #home .image img {
@@ -54,10 +79,18 @@ h1 {
   right: 2.93rem;
 }
 #header {
+  display: flex;
   border-bottom: 0.1rem solid #e4e4e4;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: var(--body-color);
 }
 nav {
-  height: 4.5rem;
+  width: 100%;
+  height: var(--header-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,12 +99,14 @@ nav {
   color: var(--base-color);
 }
 .logo {
-  font: 700 1.31rem 'Poppins', sans-serif;
+  font: 700 1.31rem "Poppins", sans-serif;
   color: var(--title-color);
+}
+main {
+  margin-top: var(--header-height);
 }
 
 .container {
-  width: 100%;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
@@ -82,6 +117,9 @@ nav {
 .section {
   padding: 5rem 0;
 }
+#home {
+  overflow: hidden;
+}
 
 #home .container {
   margin: 0;
@@ -91,6 +129,9 @@ nav {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
-#home .text p{
-  
+#home .text p {
+  margin-bottom: 2rem;
+}
+#home .text h1 {
+  margin-bottom: 1rem;
 }
