@@ -10,15 +10,21 @@ ul {
   --header-height: 4.5rem;
 
   /**colors*/
-  --hue: 159;
+  --hue: 009;
 
-  --base-color: hsl(var(--hue) 36% 57%);
-  --base-color-second: hsl(var(--hue) 65% 88%);
+  --base-color: hsl(var(--hue) 90% 50%);
+  --base-color-second: hsl(var(--hue) 85% 68%);
   --base-color-alt: hsl(var(--hue) 57% 53%);
   --title-color: hsl(var(--hue) 41% 10%);
   --text-color: hsl(0 0% 46%);
   --text-color-light: hsl(0 0% 98%);
   --body-color: hsla(0, 0%, 98%);
+
+  /*FONTS*/
+  --font-size: 1.875rem;
+  --subtitle-font-size: 1rem;
+  --title-font: "Poppins", sans-serif;
+  --body-font: "DM Sans", sans-serif;
 }
 
 html {
@@ -31,11 +37,11 @@ a {
 body {
   background: var(--body-color);
   color: var(--text-color);
-  font: 400 1rem "DM Sans", sans-serif;
+  font: 400 1rem var(--body-font);
   -webkit-font-smoothing: antialiased;
 }
 .title {
-  font: 700 1.875rem "Poppins", sans-serif;
+  font: 700 var(--font-size) var(--title-font);
   color: var(--title-color);
   -webkit-font-smoothing: antialiased;
 }
@@ -47,7 +53,7 @@ body {
   align-items: center;
   padding: 0 2rem;
   border-radius: 0.25rem;
-  font: 500 1rem "DM Sans", sans-serif;
+  font: 500 1rem var(--body-font);
   transition: background 0.3s;
 }
 .button:hover {
@@ -123,10 +129,11 @@ nav ul li a {
   position: relative;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a.active {
   color: var(--base-color);
 }
-nav ul li a:after {
+nav ul li a::after {
   content: "";
   width: 0%;
   height: 2px;
@@ -136,7 +143,9 @@ nav ul li a:after {
   bottom: -1.5rem;
   transition: 0.2s;
 }
-nav ul li a:hover::after {
+
+nav ul li a:hover::after,
+nav ul lil a.active::after {
   width: 100%;
 }
 
@@ -209,13 +218,6 @@ nav.show .icon-close {
 .logo-alt span {
   color: var(--body-color);
 }
-main {
-  margin-top: calc(var(--header-height) + 2rem);
-  /*calculo pega o tamanho em pixel e divide pelo tamanho do root ex root = 16px tamanho a converter para rem 32px
-    32/16 = 2 => 2rem
-  
-  */
-}
 
 .container {
   margin-left: 1.5rem;
@@ -226,10 +228,13 @@ main {
   gap: 2rem;
 }
 .section {
-  padding: 5rem 0;
+  padding: calc(5rem + var(--header-height)) 0;
 }
 .section .title {
   margin-bottom: 1rem;
+}
+.section .subtitle {
+  font-size: var(--subtitle-font-size);
 }
 .section header {
   margin-bottom: 4rem;
@@ -283,7 +288,7 @@ main {
   border-radius: 0.25rem;
 }
 
-#about .image img {
+#about .image img {  
   width: 100%;
   height: auto;
   position: relative;
@@ -296,6 +301,7 @@ main {
 }
 
 /*SERVICES*/
+
 .card.grid {
   gap: 1.5rem;
 }
@@ -314,7 +320,7 @@ main {
   color: var(--base-color);
 }
 .card .title {
-  font-size: 1.5rem;
+  font-size: var(--font-size);
   margin-bottom: 0.25rem;
 }
 
@@ -420,8 +426,11 @@ footer .brand p {
   color: var(--text-color-light);
   margin-bottom: 0.75rem;
 }
+footer .social {
+  grid-auto-flow: column;
+  width: fit-content;
+}
 footer .social a {
-  margin-right: 2rem;
   transition: 0.3s;
   display: inline-block;
 }
@@ -431,6 +440,9 @@ footer .social a:hover {
 footer i {
   font-size: 1.5rem;
   color: var(--text-color-light);
+}
+footer.section {
+  padding: 4rem 0;
 }
 
 .back-to-top {
@@ -455,3 +467,246 @@ footer i {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* /*RESPONSIVIDADE media queries */
+/* extra lage devices : 1200 */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .button {
+    height: 3.25rem;
+  }
+  main {
+    margin-top: var(--header-height);
+    /*calculo pega o tamanho em pixel e divide pelo tamanho do root ex root = 16px tamanho a converter para rem 32px
+      32/16 = 2 => 2rem
+    
+    */
+  }
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+  nav .menu ul {
+    display: flex;
+    gap: 2rem;
+  }
+  nav .menu ul a.title {
+    font: 400 1rem var(--body-font);
+  }
+
+  .section {
+    padding: 10rem 0;
+  }
+  .section header {
+    max-width: 32rem;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+  .icon-menu {
+    display: none;
+  }
+  #home .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+    /* width: fit-content; */
+    justify-content: space-between;
+  }
+  #home .image {
+    order: 1;
+  }
+  #home .text {
+    order: 0;
+    max-width: 24rem;
+    text-align: left;
+  }
+  /*ABOUT*/
+  #about .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+  #about .grid {
+    gap: 6rem;
+  }
+  /* #about .image::before {
+    content: "";
+    height: 85%;
+    width: 100%;
+    background: var(--base-color-second);
+    position: absolute;
+    top: -16.8%;
+    left: -16.8%;
+    z-index: 0;
+  } */
+  /*SERVICES*/
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .card {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /*TESTIMONIALS*/
+  #testimonials .container {
+    margin: 0 auto;
+  }
+  #testimonials .container header {
+    margin: 0 auto;
+  }
+  /*Contact*/
+  #contact .grid {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+  #contact .text {
+    max-width: 25rem;
+  }
+  #contact .links .grid {
+    grid-auto-flow: row;
+  }
+
+  /*footer*/
+
+  footer .section {
+    padding: 3.75rem 0;
+  }
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  footer .logo {
+    font-size: 2.5rem;
+  }
+}
+/* large devices : 1023 */
+@media (min-width: 767px) {
+  .container {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .button {
+    height: 3.25rem;
+  }
+  main {
+    margin-top: var(--header-height);
+    /*calculo pega o tamanho em pixel e divide pelo tamanho do root ex root = 16px tamanho a converter para rem 32px
+      32/16 = 2 => 2rem
+    
+    */
+  }
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+  nav .menu ul {
+    display: flex;
+    gap: 2rem;
+  }
+  nav .menu ul a.title {
+    font: 400 1rem var(--body-font);
+  }
+
+  .section {
+    padding: 10rem 0;
+  }
+  .section header {
+    max-width: 32rem;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+  }
+  .icon-menu {
+    display: none;
+  }
+  #home .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+    /* width: fit-content; */
+    justify-content: space-between;
+  }
+  #home .image {
+    order: 1;
+  }
+  #home .text {
+    order: 0;
+    max-width: 24rem;
+    text-align: left;
+  }
+  /*ABOUT*/
+  #about .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+  #about .grid {
+    gap: 6rem;
+  }
+  /* #about .image::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: var(--base-color-second);
+    
+    position: absolute;
+    top: -16.8%;
+    left: -16.8%;
+    z-index: 0;
+  } */
+  /*SERVICES*/
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .card {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /*TESTIMONIALS*/
+  #testimonials .container {
+    margin: 0 auto;
+  }
+  #testimonials .container header {
+    margin: 0 auto;
+  }
+  /*Contact*/
+  #contact .grid {
+    grid-auto-flow: column;
+    align-items: center;
+  }
+  #contact .text {
+    max-width: 25rem;
+  }
+  #contact .links .grid {
+    grid-auto-flow: row;
+  }
+
+  /*footer*/
+
+  footer .section {
+    padding: 3.75rem 0;
+  }
+  footer .container {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  footer .logo {
+    font-size: 2.5rem;
+  }
+}
+/* large divices : 992 */
+@media (min-width: 992px) {
+  :root {
+    --font-size: 2.25rem;
+    --subtitle-font-size: 1.25rem;
+  }
+}
+/* medium devices:767 */
